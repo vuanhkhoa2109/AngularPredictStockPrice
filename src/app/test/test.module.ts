@@ -6,6 +6,7 @@ import { NgxsModule } from '@ngxs/store';
 import { TestState } from './store/states/test.states';
 import { MainPageComponent } from './containers/main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
+import { NbLayoutModule } from '@nebular/theme';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     TestRoutingModule,
     NgxsModule.forFeature([TestState]),
-    FormsModule
+    FormsModule,
+    NbLayoutModule
   ]
 })
 export class TestModule { }

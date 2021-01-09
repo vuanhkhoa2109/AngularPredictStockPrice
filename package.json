@@ -12,6 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~9.1.13",
+    "@angular/cdk": "^9.0.0",
     "@angular/common": "~9.1.13",
     "@angular/compiler": "~9.1.13",
     "@angular/core": "~9.1.13",
@@ -19,8 +20,11 @@
     "@angular/platform-browser": "~9.1.13",
     "@angular/platform-browser-dynamic": "~9.1.13",
     "@angular/router": "~9.1.13",
+    "@nebular/eva-icons": "5.1.0",
+    "@nebular/theme": "^5.1.0",
     "@ngxs/logger-plugin": "^3.7.1",
     "@ngxs/store": "^3.7.1",
+    "eva-icons": "^1.1.2",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -30,6 +34,7 @@
     "@angular/cli": "~9.1.13",
     "@angular/compiler-cli": "~9.1.13",
     "@ngxs/devtools-plugin": "^3.7.1",
+    "@schematics/angular": "~9.1.13",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",

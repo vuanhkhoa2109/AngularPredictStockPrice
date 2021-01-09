@@ -7,6 +7,9 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { TestModule } from './test/test.module';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbSidebarService, NbIconModule } from '@nebular/theme';
+import { NbEvaIconsModule } from '@nebular/eva-icons';
 
 @NgModule({
   declarations: [
@@ -15,11 +18,18 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgxsModule.forRoot([], {developmentMode: true}),
+    NgxsModule.forRoot([], { developmentMode: true }),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot(),
+    BrowserAnimationsModule,
+    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbLayoutModule,
+    NbEvaIconsModule,
+    NbSidebarModule,
+    NbButtonModule,
+    NbIconModule,
   ],
-  providers: [],
+  providers: [NbSidebarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
