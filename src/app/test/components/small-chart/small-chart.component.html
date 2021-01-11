@@ -1,0 +1,7 @@
+<ejs-stockchart id="chart-container" [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis' [title]='title'
+                [crosshair]='crosshair' [exportType]= [] [seriesType]=[] [indicatorType]=[] [trendlineType]=[]>
+  <e-stockchart-series-collection>
+    <e-stockchart-series [dataSource]='stockchartData' type='Candle' xName='date' yName='open' name='India'
+                         width=2></e-stockchart-series>
+  </e-stockchart-series-collection>
+</ejs-stockchart>
