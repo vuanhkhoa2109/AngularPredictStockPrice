@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { NbSearchService } from '@nebular/theme';
-import { AddEntities, GetIndustryInformation } from '../../store/actions/test.actions';
-import { IndustryModel } from '../../models/IndustryModel';
-import { Add } from '@ngxs-labs/entity-state';
-import { IndustryState } from '../../store/states/Industry.state';
+import { AddEntities, GetIndustryInformation, GetListIndustry } from '../../store/actions/test.actions';
 
 @Component({
   selector: 'app-main-page',
@@ -13,7 +10,6 @@ import { IndustryState } from '../../store/states/Industry.state';
 })
 export class MainPageComponent implements OnInit {
   value: '';
-  list: Array<IndustryModel>;
 
   constructor(private store: Store, private searchService: NbSearchService) {
     this.searchService.onSearchSubmit()
@@ -21,40 +17,7 @@ export class MainPageComponent implements OnInit {
         this.value = data.term;
         console.log(this.value);
       });
-    this.list = [
-      {
-        code: 'Hydrogen',
-        eps: 20,
-        foreignOwned: 'abc',
-        marketCapitalization: 1,
-        pe: 1,
-        roa: 1,
-        roe: 1,
-        volume: 20
-      },
-      {
-        code: 'Helium',
-        eps: 20,
-        foreignOwned: 'abc',
-        marketCapitalization: 1,
-        pe: 1,
-        roa: 1,
-        roe: 1,
-        volume: 20
-      },
-      {
-        code: 'Lithium',
-        eps: 20,
-        foreignOwned: 'abc',
-        marketCapitalization: 1,
-        pe: 1,
-        roa: 1,
-        roe: 1,
-        volume: 20
-      },
-    ];
-    this.store.dispatch(new AddEntities(this.list));
-    this.store.dispatch(new GetIndustryInformation('^bds'));
+    this.store.dispatch(new GetListIndustry());
   }
 
   ngOnInit(): void {

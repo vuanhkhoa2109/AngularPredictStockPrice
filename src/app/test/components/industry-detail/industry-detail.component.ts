@@ -11,7 +11,6 @@ import { Select } from '@ngxs/store';
   styleUrls: ['./industry-detail.component.css']
 })
 export class IndustryDetailComponent implements OnInit {
-  today = '20210111';
   @Select(IndustryState.active) selectedIndustry$: Observable<IndustryModel>;
 
   constructor() {
@@ -19,13 +18,4 @@ export class IndustryDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-  parse(date: string): string {
-    const list = Array<string>();
-    list.push(date.slice(0, 4));
-    list.push(date.slice(4, 6));
-    list.push(date.slice(6, 8));
-    return list.join('/');
-  }
-
 }

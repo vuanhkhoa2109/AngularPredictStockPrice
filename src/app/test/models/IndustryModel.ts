@@ -1,5 +1,5 @@
 export class IndustryModel {
-  code: string;
+  industryCode: string;
   eps: number;
   pe: number;
   roe: number;

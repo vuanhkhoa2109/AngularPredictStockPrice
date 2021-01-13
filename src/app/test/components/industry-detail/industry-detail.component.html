@@ -1,38 +1,34 @@
 <div class="industry-detail-container">
   <nb-card accent="info">
     <nb-card-header>Chỉ số ngành</nb-card-header>
-    <nb-card-body>
+    <nb-card-body *ngIf="selectedIndustry$ | async as industry">
       <div class="information-item">
-        <span>Tham chiếu:</span>
-        <span>Giá trị</span>
+        <span>Code:</span>
+        <span>{{industry.industryCode}}</span>
       </div>
       <div class="information-item">
-        <span>Mở cửa:</span>
-        <span>Giá trị</span>
+        <span>EPS:</span>
+        <span>{{industry.eps}}</span>
       </div>
       <div class="information-item">
-        <span>TN /CN:</span>
-        <span>Giá trị</span>
+        <span>PE:</span>
+        <span>{{industry.pe}}</span>
       </div>
       <div class="information-item">
-        <span>Khối Lượng:</span>
-        <span>Giá trị</span>
+        <span>Volume:</span>
+        <span>{{industry.volume}}</span>
       </div>
       <div class="information-item">
-        <span>KLTB 13 tuần:</span>
-        <span>Giá trị</span>
+        <span>Foreignn Owned:</span>
+        <span>{{industry.foreignOwned}}</span>
       </div>
       <div class="information-item">
-        <span>KLTB 10 ngày:</span>
-        <span>Giá trị</span>
+        <span>Market Capitalization:</span>
+        <span>{{industry.marketCapitalization}}</span>
       </div>
       <div class="information-item">
-        <span>CN 52 tuần:</span>
-        <span>Giá trị</span>
-      </div>
-      <div class="information-item">
-        <span>TN 52 tuần:</span>
-        <span>Giá trị</span>
+        <span>ROA:</span>
+        <span>{{industry.roa}}</span>
       </div>
     </nb-card-body>
   </nb-card>

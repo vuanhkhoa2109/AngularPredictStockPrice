@@ -1,5 +1,6 @@
 export class StockPriceModel {
+  id: number;
   name: string;
   price: number;
-  date: string;
+  dateTime: string;
 }

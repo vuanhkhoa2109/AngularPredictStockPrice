@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, BaseChartDirective, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
+import { Select } from '@ngxs/store';
+import { PriceState } from '../../store/states/test.states';
+import { Observable } from 'rxjs';
+import { StockPriceModel } from '../../models/StockPriceModel';
 
 @Component({
   selector: 'app-small-chart',
@@ -9,10 +13,12 @@ import * as pluginAnnotations from 'chartjs-plugin-annotation';
   styleUrls: ['./small-chart.component.css']
 })
 export class SmallChartComponent implements OnInit {
+  @Select(PriceState.entities) dataPrice$: Observable<StockPriceModel[]>;
+
   public lineChartData: ChartDataSets[] = [
-    { data: [65, 59, 80, 81, 56, 55, 40], label: 'Cổ phiếu BDS' },
+    { data: [], label: 'No Name' },
   ];
-  public lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+  public lineChartLabels: Label[] = [];
   public lineChartOptions: (ChartOptions) = {
     responsive: true,
     scales: {
@@ -42,6 +48,22 @@ export class SmallChartComponent implements OnInit {
   @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
 
   constructor() {
+    this.dataPrice$.subscribe(value => {
+      if (!!value && value.length > 0) {
+        console.log(value);
+        const dataSets: ChartDataSets[] = [
+          { data: [], label: 'No Name' },
+        ];
+        const dataTime: Label[] = [];
+        value.forEach(vl => {
+          dataSets[0].data.push(vl.price);
+          dataSets[0].label = vl.name;
+          dataTime.push(this.parse(vl.dateTime));
+        });
+        this.lineChartData = dataSets;
+        this.lineChartLabels = dataTime;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -53,6 +75,14 @@ export class SmallChartComponent implements OnInit {
 
   public chartHovered({ event, active }: { event: MouseEvent, active: {}[] }): void {
     console.log(event, active);
+  }
+
+  parse(date: string): string {
+    const list = Array<string>();
+    list.push(date.slice(0, 4));
+    list.push(date.slice(4, 6));
+    list.push(date.slice(6, 8));
+    return list.join('/');
   }
 
 }

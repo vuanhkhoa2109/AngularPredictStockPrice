@@ -11,11 +11,11 @@ export class StockPriceService {
   }
 
   getListIndustry(): Observable<Array<IndustryModel>> {
-    return null;
+    return this.httpClient.get<Array<IndustryModel>>(`${environment.apiUrl}/industries`);
   }
 
-  getListIndustryStockPriceForSmallChart(code: string): Observable<Array<StockPriceModel>> {
-    return new Observable<[]>();
+  getListIndustryStockPriceForSmallChart(code: string): Observable<any> {
+    return this.httpClient.get<any>(`${environment.apiUrl}/data/GetByIndustryCode/${code}`);
   }
 
   getIndustryInformation(code: string): Observable<IndustryModel> {
