@@ -1,13 +1,30 @@
-export class AddNumber {
-  static readonly type = '[TEST] Add number';
+import { IndustryModel } from '../../models/IndustryModel';
 
-  constructor(public num: number) {
+export class GetSmallChartData {
+  static readonly type = '[TEST] Get data for small chart';
+
+  constructor(public code: string) {
   }
 }
 
-export class RemoveNumber {
-  static readonly type = '[TEST]Remove number';
+export class GetListIndustry {
+  static readonly type = '[TEST] Get list industry';
 
-  constructor(public num: number) {
+  constructor() {
   }
 }
+
+export class AddEntities {
+  static readonly type = '[TEST] Add Entities';
+
+  constructor(public list: IndustryModel[]) {
+  }
+}
+
+export class GetIndustryInformation {
+  static readonly type = '[TEST] Get industry information';
+
+  constructor(public code: string) {
+  }
+}
+

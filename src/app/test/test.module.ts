@@ -3,41 +3,35 @@ import { CommonModule } from '@angular/common';
 
 import { TestRoutingModule } from './test-routing.module';
 import { NgxsModule } from '@ngxs/store';
-import { TestState } from './store/states/test.states';
+import { PriceState } from './store/states/test.states';
 import { MainPageComponent } from './containers/main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
-import { NbLayoutModule } from '@nebular/theme';
+import { NbCardModule, NbLayoutModule, NbListModule, NbSearchModule, NbSearchService } from '@nebular/theme';
 import { SmallChartComponent } from './components/small-chart/small-chart.component';
-import { BrowserModule } from '@angular/platform-browser';
-import {
-  AreaSeriesService, CandleSeriesService,
-  ChartAllModule,
-  ChartModule, DataLabelService,
-  DateTimeService, LegendService, PeriodSelectorService,
-  RangeNavigatorModule,
-  StockChartAllModule, StockChartModule, TooltipService
-} from '@syncfusion/ej2-angular-charts';
-
+import { ChartsModule } from 'ng2-charts';
+import { AnotherState } from './store/states/another.state';
+import { IndustryDetailComponent } from './components/industry-detail/industry-detail.component';
+import { IndustryTableComponent } from './components/industry-table/industry-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { NewsListComponent } from './components/news-list/news-list.component';
+import { IndustryState } from './store/states/Industry.state';
+import { StockPriceService } from './services/StockPrice.service';
 
 @NgModule({
-  declarations: [MainPageComponent, SmallChartComponent],
+  declarations: [MainPageComponent, SmallChartComponent, IndustryDetailComponent, IndustryTableComponent, NewsListComponent],
   imports: [
     CommonModule,
     TestRoutingModule,
-    NgxsModule.forFeature([TestState]),
+    NgxsModule.forFeature([PriceState, AnotherState, IndustryState]),
     FormsModule,
     NbLayoutModule,
-    StockChartModule,
-    RangeNavigatorModule,
+    ChartsModule,
+    NbCardModule,
+    NbSearchModule,
+    MatTableModule,
+    NbListModule
   ],
-  providers: [DateTimeService,
-    LegendService,
-    TooltipService,
-    DataLabelService,
-    CandleSeriesService,
-    AreaSeriesService,
-    DateTimeService,
-    PeriodSelectorService]
+  providers: [NbSearchService, StockPriceService]
 })
 export class TestModule {
 }

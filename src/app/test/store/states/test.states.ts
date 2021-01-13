@@ -1,42 +1,30 @@
-import { Action, Selector, State, StateContext } from '@ngxs/store';
+import { Action, Selector, State, StateContext, Store } from '@ngxs/store';
 import { Injectable } from '@angular/core';
-import { TestActions } from '../actions';
+import { CreateOrReplace, defaultEntityState, EntityState, EntityStateModel, IdStrategy } from '@ngxs-labs/entity-state';
+import { StockPriceModel } from '../../models/StockPriceModel';
+import { StockPriceService } from '../../services/StockPrice.service';
+import { catchError, tap } from 'rxjs/operators';
+import { GetSmallChartData } from '../actions/test.actions';
 
-export class TestStateModel{
-  numArray: number[];
-}
-
-@State<TestStateModel>({
-  name: 'test',
-
-  defaults: {
-    numArray: []
-  }
+@State<EntityStateModel<StockPriceModel>>({
+  name: 'Stock',
+  defaults: defaultEntityState()
 })
 
 @Injectable()
-export class TestState {
-  @Selector()
-  static getNumArray(state: TestStateModel){
-    return state.numArray;
+export class PriceState extends EntityState<StockPriceModel> {
+  constructor(private stockService: StockPriceService, private store: Store) {
+    super(PriceState, 'name', IdStrategy.EntityIdGenerator);
   }
 
-  @Action(TestActions.AddNumber)
-  add({ getState, patchState }: StateContext<TestStateModel>, { num }: TestActions.AddNumber ){
-    const state = getState();
-
-    patchState({
-      numArray: [...state.numArray, num]
-    });
-  }
-
-  @Action(TestActions.RemoveNumber)
-  remove({ getState, patchState }: StateContext<TestStateModel>, { num }: TestActions.RemoveNumber ){
-    const state = getState();
-
-    patchState({
-      numArray: state.numArray.filter(x => x !== num)
-    });
+  @Action(GetSmallChartData)
+  getListIndustry(state: StateContext<PriceState>, action: GetSmallChartData){
+    return this.stockService.getListIndustryStockPriceForSmallChart(action.code).pipe(
+      tap((listData: Array<StockPriceModel>) => {
+        return this.store.dispatch(new CreateOrReplace(PriceState, listData));
+      }),
+      catchError(err => null)
+    );
   }
 }
 

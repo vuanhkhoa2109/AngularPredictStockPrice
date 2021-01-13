@@ -7,8 +7,17 @@ import { NgxsModule } from '@ngxs/store';
 import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbButtonModule, NbSidebarService, NbIconModule } from '@nebular/theme';
+import {
+  NbThemeModule,
+  NbLayoutModule,
+  NbSidebarModule,
+  NbButtonModule,
+  NbSidebarService,
+  NbIconModule,
+  NbSearchModule
+} from '@nebular/theme';
 import { NbEvaIconsModule } from '@nebular/eva-icons';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +36,8 @@ import { NbEvaIconsModule } from '@nebular/eva-icons';
     NbSidebarModule,
     NbButtonModule,
     NbIconModule,
+    NbSearchModule,
+    HttpClientModule
   ],
   providers: [NbSidebarService],
   bootstrap: [AppComponent]

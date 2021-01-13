@@ -1,7 +1,16 @@
-<ejs-stockchart id="chart-container" [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis' [title]='title'
-                [crosshair]='crosshair' [exportType]= [] [seriesType]=[] [indicatorType]=[] [trendlineType]=[]>
-  <e-stockchart-series-collection>
-    <e-stockchart-series [dataSource]='stockchartData' type='Candle' xName='date' yName='open' name='India'
-                         width=2></e-stockchart-series>
-  </e-stockchart-series-collection>
-</ejs-stockchart>
+<div class="flex">
+  <div class="flex-item">
+    <div style="display: block;">
+      <canvas baseChart
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              [plugins]="lineChartPlugins"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)"></canvas>
+    </div>
+  </div>
+</div>
