@@ -6,7 +6,7 @@ import { NgxsModule } from '@ngxs/store';
 import { PriceState } from './store/states/test.states';
 import { MainPageComponent } from './containers/main-page/main-page.component';
 import { FormsModule } from '@angular/forms';
-import { NbCardModule, NbLayoutModule, NbListModule, NbSearchModule, NbSearchService } from '@nebular/theme';
+import { NbCardModule, NbIconModule, NbLayoutModule, NbListModule, NbSearchModule, NbSearchService } from '@nebular/theme';
 import { SmallChartComponent } from './components/small-chart/small-chart.component';
 import { ChartsModule } from 'ng2-charts';
 import { AnotherState } from './store/states/another.state';
@@ -32,7 +32,8 @@ import { StockDetailComponent } from './containers/stock-detail/stock-detail.com
     NbCardModule,
     NbSearchModule,
     MatTableModule,
-    NbListModule
+    NbListModule,
+    NbIconModule
   ],
   providers: [NbSearchService, StockPriceService]
 })

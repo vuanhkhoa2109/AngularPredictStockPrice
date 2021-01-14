@@ -18,6 +18,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   subsciption$: Subscription;
 
   constructor(private store: Store, private searchService: NbSearchService, private router: Router) {
+    this.store.dispatch(new GetListIndustry());
     this.subsciption$ = this.searchService.onSearchSubmit()
       .subscribe((data: any) => {
         this.searchValue = data.term;
@@ -35,7 +36,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
           }
         }).unsubscribe();
       });
-    this.store.dispatch(new GetListIndustry());
   }
 
   ngOnInit(): void {

@@ -1,10 +1,10 @@
 export class IndustryModel {
   industryCode: string;
-  eps: number;
-  pe: number;
-  roe: number;
+  lastUpdatedDate: number;
+  openPrice: number;
+  closePrice: number;
+  closePredict1Day: number;
+  closePredict3Day: string;
+  closePredict7Day: number;
   volume: number;
-  foreignOwned: string;
-  marketCapitalization: number;
-  roa: number;
 }

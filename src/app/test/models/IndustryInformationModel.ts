@@ -1,6 +1,10 @@
 export class IndustryInformationModel {
-  code: string;
-  time: string;
+  industryCode: string;
+  eps: string;
+  pe: string;
   roa: string;
   roe: string;
+  volume: string;
+  foreignOwned: string;
+  marketCapitalization: string;
 }

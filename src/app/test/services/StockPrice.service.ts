@@ -4,6 +4,7 @@ import { IndustryModel } from '../models/IndustryModel';
 import { StockPriceModel } from '../models/StockPriceModel';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { IndustryInformationModel } from '../models/IndustryInformationModel';
 
 @Injectable()
 export class StockPriceService {
@@ -18,8 +19,8 @@ export class StockPriceService {
     return this.httpClient.get<any>(`${environment.apiUrl}/data/GetByIndustryCode/${code}`);
   }
 
-  getIndustryInformation(code: string): Observable<IndustryModel> {
-    return this.httpClient.get<IndustryModel>(`${environment.apiUrl}/industries/GetByIndustryCode/${code}`);
+  getIndustryInformation(code: string): Observable<IndustryInformationModel> {
+    return this.httpClient.get<IndustryInformationModel>(`${environment.apiUrl}/industries/GetByIndustryCode/${code}`);
   }
 
   getFullPredictDataForBigChart(code: string): Observable<any> {

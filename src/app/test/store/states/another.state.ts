@@ -4,12 +4,12 @@ import { IndustryModel } from '../../models/IndustryModel';
 import { GetIndustryInformation, GetListIndustry, SetSearchValue } from '../actions/test.actions';
 import { catchError, tap } from 'rxjs/operators';
 import { StockPriceService } from '../../services/StockPrice.service';
-import { Observable } from 'rxjs';
+import { IndustryInformationModel } from '../../models/IndustryInformationModel';
 
 export class AnotherStateModel {
   isLoading: boolean;
   error: string;
-  industryInformation: IndustryModel;
+  industryInformation: IndustryInformationModel;
   search: string;
 }
 
@@ -25,26 +25,33 @@ export class AnotherStateModel {
 
 @Injectable()
 export class AnotherState {
-  constructor(private stockPriceService: StockPriceService) {}
+  constructor(private stockPriceService: StockPriceService) {
+  }
+
   @Selector()
   static searchValue(state: AnotherStateModel) {
     return state.search;
   }
 
+  @Selector()
+  static selectedIndustry(state: AnotherStateModel) {
+    return state.industryInformation;
+  }
+
   @Action(GetIndustryInformation)
-  getListIndustry(state: StateContext<AnotherStateModel>, action: GetIndustryInformation){
+  getIndustryInformation(state: StateContext<AnotherStateModel>, action: GetIndustryInformation) {
     return this.stockPriceService.getIndustryInformation(action.code).pipe(
-      tap((listData: IndustryModel) => {
-        console.log(listData);
+      tap((data: IndustryInformationModel) => {
+        console.log(data);
         const nowState = state.getState();
-        state.setState({  ...nowState, industryInformation: listData });
+        state.setState({ ...nowState, industryInformation: data });
       }),
       catchError(err => null)
     );
   }
 
   @Action(SetSearchValue)
-  setSearchValue(state: StateContext<AnotherStateModel>, action: SetSearchValue){
+  setSearchValue(state: StateContext<AnotherStateModel>, action: SetSearchValue) {
     const current = state.getState();
     state.setState({
       ...current,

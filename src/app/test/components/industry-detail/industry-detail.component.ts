@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { stringify } from 'querystring';
-import { IndustryState } from '../../store/states/Industry.state';
 import { Observable } from 'rxjs';
-import { IndustryModel } from '../../models/IndustryModel';
 import { Select } from '@ngxs/store';
+import { AnotherState } from '../../store/states/another.state';
+import { IndustryInformationModel } from '../../models/IndustryInformationModel';
 
 @Component({
   selector: 'app-industry-detail',
@@ -11,11 +10,13 @@ import { Select } from '@ngxs/store';
   styleUrls: ['./industry-detail.component.css']
 })
 export class IndustryDetailComponent implements OnInit {
-  @Select(IndustryState.active) selectedIndustry$: Observable<IndustryModel>;
+  @Select(AnotherState.selectedIndustry) selectedIndustry$: Observable<IndustryInformationModel>;
 
   constructor() {
   }
-
   ngOnInit(): void {
+    this.selectedIndustry$.subscribe(value => {
+      console.log(value);
+    });
   }
 }

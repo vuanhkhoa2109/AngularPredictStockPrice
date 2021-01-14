@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 import { StockPriceService } from '../../services/StockPrice.service';
 import { TestActions } from '../actions';
 import { catchError, tap } from 'rxjs/operators';
-import { GetListIndustry, GetSmallChartData, GoToStockDetail } from '../actions/test.actions';
+import { GetIndustryInformation, GetListIndustry, GetSmallChartData, GoToStockDetail } from '../actions/test.actions';
 import { Observable } from 'rxjs';
 
 @State<EntityStateModel<IndustryModel>>({
@@ -26,6 +26,7 @@ export class IndustryState extends EntityState<IndustryModel> {
         if (!!listData && listData.length > 0){
           this.store.dispatch(new SetActive(IndustryState, listData[0].industryCode));
           this.store.dispatch(new GetSmallChartData(listData[0].industryCode));
+          this.store.dispatch(new GetIndustryInformation(listData[0].industryCode));
         }
         return this.store.dispatch(new CreateOrReplace(IndustryState, listData));
       }),
