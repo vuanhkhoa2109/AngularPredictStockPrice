@@ -21,4 +21,8 @@ export class StockPriceService {
   getIndustryInformation(code: string): Observable<IndustryModel> {
     return this.httpClient.get<IndustryModel>(`${environment.apiUrl}/industries/GetByIndustryCode/${code}`);
   }
+
+  getFullPredictDataForBigChart(code: string): Observable<any> {
+    return null;
+  }
 }

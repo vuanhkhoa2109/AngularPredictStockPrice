@@ -1,14 +1,16 @@
-import { Action, State, StateContext } from '@ngxs/store';
+import { Action, actionMatcher, Selector, State, StateContext } from '@ngxs/store';
 import { Injectable } from '@angular/core';
 import { IndustryModel } from '../../models/IndustryModel';
-import { GetIndustryInformation, GetListIndustry } from '../actions/test.actions';
+import { GetIndustryInformation, GetListIndustry, SetSearchValue } from '../actions/test.actions';
 import { catchError, tap } from 'rxjs/operators';
 import { StockPriceService } from '../../services/StockPrice.service';
+import { Observable } from 'rxjs';
 
 export class AnotherStateModel {
   isLoading: boolean;
   error: string;
   industryInformation: IndustryModel;
+  search: string;
 }
 
 @State<AnotherStateModel>({
@@ -16,14 +18,18 @@ export class AnotherStateModel {
   defaults: {
     error: null,
     isLoading: null,
-    industryInformation: null
+    industryInformation: null,
+    search: null
   }
 })
 
 @Injectable()
 export class AnotherState {
   constructor(private stockPriceService: StockPriceService) {}
-
+  @Selector()
+  static searchValue(state: AnotherStateModel) {
+    return state.search;
+  }
 
   @Action(GetIndustryInformation)
   getListIndustry(state: StateContext<AnotherStateModel>, action: GetIndustryInformation){
@@ -35,5 +41,14 @@ export class AnotherState {
       }),
       catchError(err => null)
     );
+  }
+
+  @Action(SetSearchValue)
+  setSearchValue(state: StateContext<AnotherStateModel>, action: SetSearchValue){
+    const current = state.getState();
+    state.setState({
+      ...current,
+      search: action.code
+    });
   }
 }

@@ -1,11 +1,12 @@
-import { Action, State, StateContext, Store } from '@ngxs/store';
+import { Action, Select, State, StateContext, Store } from '@ngxs/store';
 import { Add, CreateOrReplace, defaultEntityState, EntityState, EntityStateModel, IdStrategy, SetActive } from '@ngxs-labs/entity-state';
 import { IndustryModel } from '../../models/IndustryModel';
 import { Injectable } from '@angular/core';
 import { StockPriceService } from '../../services/StockPrice.service';
 import { TestActions } from '../actions';
 import { catchError, tap } from 'rxjs/operators';
-import { GetListIndustry, GetSmallChartData } from '../actions/test.actions';
+import { GetListIndustry, GetSmallChartData, GoToStockDetail } from '../actions/test.actions';
+import { Observable } from 'rxjs';
 
 @State<EntityStateModel<IndustryModel>>({
   name: 'Industry',

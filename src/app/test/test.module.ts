@@ -16,9 +16,12 @@ import { MatTableModule } from '@angular/material/table';
 import { NewsListComponent } from './components/news-list/news-list.component';
 import { IndustryState } from './store/states/Industry.state';
 import { StockPriceService } from './services/StockPrice.service';
+import { StockDetailComponent } from './containers/stock-detail/stock-detail.component';
 
 @NgModule({
-  declarations: [MainPageComponent, SmallChartComponent, IndustryDetailComponent, IndustryTableComponent, NewsListComponent],
+  declarations: [MainPageComponent,
+    SmallChartComponent,
+    IndustryDetailComponent, IndustryTableComponent, NewsListComponent, StockDetailComponent],
   imports: [
     CommonModule,
     TestRoutingModule,
